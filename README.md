@@ -9,14 +9,20 @@ Record the actual local version with `gcc --version`. Compile with `-std=c11 -Wa
 
 ## Build and run
 - B1 recursion: `gcc -std=c11 -Wall -Wextra -pedantic TaskB1/recursion.c -o TaskB1/recursion`; run `./TaskB1/recursion`.
-- B2 adversarial input demo: `gcc -std=c11 -Wall -Wextra -pedantic TaskB2/adversarial.c -o TaskB2/adversarial`; run `./TaskB2/adversarial`.
-- B3 text/binary experiment: `gcc -std=c11 -Wall -Wextra -pedantic TaskB3/file_benchmark.c -o TaskB3/file_benchmark`; run `./TaskB3/file_benchmark`.
-- B4 growable list: `gcc -std=c11 -Wall -Wextra -pedantic TaskB4/growable_list.c -o TaskB4/growable_list`; run `./TaskB4/growable_list`.
+- B2 adversarial input: `gcc -std=c11 -Wall -Wextra -pedantic TaskB2/adversarial.c -o TaskB2/adversarial`; run `./TaskB2/adversarial find O+` after entering a name.
+- B2 bounded scanf comparison: `gcc -std=c11 -Wall -Wextra -pedantic TaskB2/scanf_width_demo.c -o TaskB2/scanf_demo`.
+- B3 TODO update: `gcc -std=c11 -Wall -Wextra -pedantic TaskB3/file_benchmark.c -o TaskB3/file_benchmark`.
+- B3 format benchmark: `gcc -std=c11 -Wall -Wextra -pedantic TaskB3/benchmark.c -o TaskB3/benchmark`.
+- B3 50,000th-record update experiment: `gcc -std=c11 -Wall -Wextra -pedantic TaskB3/update_experiment.c -o TaskB3/update_experiment`.
+- B4 growable list TODO: `gcc -std=c11 -Wall -Wextra -pedantic TaskB4/growable_list.c -o TaskB4/growable_list`.
+- B4 nightly donor report: `gcc -std=c11 -Wall -Wextra -pedantic TaskB4/nightly_report.c -o TaskB4/nightly_report`; run `./TaskB4/nightly_report TaskB4/sample_donors.txt <current-day-ordinal> <minimum-interval-days>`.
 
 ## Contents
-- Part A design: function decomposition/interfaces, recursion, pointers/CLI, realloc strategy and text/binary file design.
-- Part B implementation: recursive call instrumentation, adversarial input/error handling, text-versus-binary file benchmarks and growable donor list.
-- `Assignment5_Report.md` consolidates the design and engineering decision.
+- `Assignment5_Report.md`: Part A design and Part B interpretation framework.
+- `TaskB1`: digital root and instrumented linear/halving power.
+- `TaskB2`: bounded input, file-error and CLI validation examples.
+- `TaskB3`: completed binary update and text/binary timing experiments.
+- `TaskB4`: realloc donor list and file-loaded eligibility report.
 
 ## Evidence to capture locally
 - [ ] Actual GCC version, compile commands and screenshots for each program.
@@ -25,4 +31,4 @@ Record the actual local version with `gcc --version`. Compile with `-std=c11 -Wa
 - [ ] B3 file sizes and read/write/update timings for 1,000, 10,000 and 100,000 records, plus the 50,000th-record update.
 - [ ] B4 memory usage and sanitizer/Valgrind summary for a large donor list.
 
-No crash limits, timings, memory measurements or sanitizer results are fabricated in this repository. Capture them on the machine used for submission.
+No crash limits, timings, memory measurements or sanitizer results are fabricated. Capture them on the machine used for submission.
