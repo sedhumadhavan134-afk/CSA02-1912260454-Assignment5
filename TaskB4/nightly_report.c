@@ -47,7 +47,7 @@ int main(int argc, char **argv)
            list.size, list.capacity, list.capacity * sizeof *list.data);
     puts("Eligible donors (eligibility interval supplied by operator):");
     for (size_t i = 0; i < list.size; ++i)
-        if (list.data[i].last_donation_day <= min_days)
+        if (current_day >= list.data[i].last_donation_day &&\n            current_day - list.data[i].last_donation_day >= min_interval)
             printf("%d %s\n", list.data[i].id, list.data[i].group);
 
     free(list.data);
