@@ -1,6 +1,33 @@
 #include <stdio.h>
 #include <limits.h>
 
+long long digital_root_recursive(long long n)
+{
+    if (n < 0) n = -n;
+    if (n < 10) return n;
+    long long sum = 0;
+    while (n > 0) { sum += n % 10; n /= 10; }
+    return digital_root_recursive(sum);
+}
+
+long long digital_root_loop(long long n)
+{
+    if (n < 0) n = -n;
+    while (n >= 10) {
+        long long sum = 0;
+        while (n > 0) { sum += n % 10; n /= 10; }
+        n = sum;
+    }
+    return n;
+}
+
+long long digital_root_formula(long long n)
+{
+    if (n < 0) n = -n;
+    return n == 0 ? 0 : 1 + (n - 1) % 9;
+}
+
+
 long long calls = 0;
 
 /* Linear recursion: base^exp = base * base^(exp-1). */
@@ -31,7 +58,7 @@ int main(void)
     long long b = power_fast(2, 30);
     printf("fast : %lld in %lld calls\n", b, calls);
 
-    puts("Call-count experiment (base 1 avoids arithmetic overflow):");
+    printf("digital root recursive/loop/formula for 98765: %lld / %lld / %lld\\n",\n           digital_root_recursive(98765), digital_root_loop(98765),\n           digital_root_formula(98765));\n\n    puts("Call-count experiment (base 1 avoids arithmetic overflow):");
     const int exponents[] = {10, 100, 1000, 10000};
     for (size_t i = 0; i < sizeof exponents / sizeof exponents[0]; ++i) {
         int n = exponents[i];
