@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <errno.h>
 
 #define NAME_SIZE 16
 
@@ -20,8 +19,11 @@ int main(int argc, char *argv[])
         fputs("No name input received.\n", stderr);
         return 1;
     }
-    name[strcspn(name, "\n")] = '\0';
-    if (strchr(name, '\n') == NULL && strlen(name) == sizeof name - 1) {
+
+    size_t length = strcspn(name, "\n");
+    int truncated = (name[length] != '\n' && length == sizeof name - 1);
+    name[length] = '\0';
+    if (truncated) {
         int ch;
         while ((ch = getchar()) != '\n' && ch != EOF) { }
         puts("Name exceeded the input field; extra characters were discarded.");
